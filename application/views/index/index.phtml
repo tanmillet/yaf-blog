@@ -4,5 +4,14 @@
 </head>
 <body>
 <?php echo $content; ?>
+
+<?php
+foreach ($res as $item) {
+    echo $item['name'], "---",$item['value'];
+    ?>
+    <br>
+    <?php
+}
+?>
 </body>
 </html>

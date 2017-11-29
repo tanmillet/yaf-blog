@@ -17,36 +17,33 @@
 class UserPlugin extends Yaf_Plugin_Abstract
 {
 
+    //
     public function routerStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "在路由出发之前"."<br/>";
     }
 
     //此时路由一定正确完成, 否则这个事件不会触发
     public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "在路由出发之后"."<br/>";
     }
 
     //如果在一个请求处理过程中, 发生了forward, 则这个事件会被触发多次
     public function preDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "分发之前触发"."<br/>";
+        txtlog('请求处理过程中', $request->getControllerName()."::".$request->getActionName(), 'request.txt');
     }
 
     //此时动作已经执行结束, 视图也已经渲染完成. 和preDispatch类似, 此事件也可能触发多次
     public function postDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "分发结束之后触发"."<br/>";
+        txtlog('动作已经执行结束', $response->getBody(), 'request.txt');
     }
 
     public function dispatchLoopStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "分发循环开始之前被触发"."<br/>";
     }
 
     public function dispatchLoopShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
-        echo "分发循环结束之后触发"."<br/>";
     }
 }
